@@ -309,6 +309,8 @@ body {
     transform: scale(0.98);
 }
 
+
+
 @media (max-width: 360px) {
     .main-title { font-size: 44px; }
     .subtitle-line-1 { font-size: 20px; }
