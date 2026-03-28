@@ -1,0 +1,315 @@
+/* style.css - Clean Override */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden; /* Strictly prevent horizontal swipe */
+    max-width: 100vw;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: url('img/bg.JPG') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* CRITICAL FIX: Changed from center to flex-start */
+}
+
+.app-container {
+    width: 100%;
+    max-width: 480px;
+    min-height: 100vh;
+    padding-top: 5vh !important; /* Поднимаем весь блок выше */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start !important;
+    position: relative;
+    z-index: 1;
+}
+
+.header {
+    margin-top: 0 !important; 
+    padding-top: 0 !important;
+}
+
+.header h1, .header p {
+    margin-top: 0;
+}
+
+/* Typography */
+.main-title {
+    font-size: 52px !important; /* Насильственное увеличение заголовка */
+    font-weight: 700;
+    color: #4C6788;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0 !important;
+    margin-bottom: 5px;
+    line-height: 1.1;
+}
+
+.subtitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px; /* Removed gap between subtitle lines */
+    margin-bottom: 0px; /* Removed bottom margin */
+}
+
+.subtitle p {
+    font-weight: 600;
+    text-align: center;
+    line-height: 1 !important; /* Squish lines together */
+}
+
+.subtitle-line-1 {
+    font-size: 24px;
+    color: #473529;
+}
+
+.subtitle-line-2 {
+    font-size: 32px;
+    color: #473529;
+    margin-top: -5px !important; /* Negative margin to pull it directly under the first line */
+}
+
+/* Wheel Section - CRITICAL OVERRIDE */
+.game-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px !important; /* Резкое сокращение отступа над колесом */
+    margin-bottom: 0;
+}
+
+.wheel-container {
+    position: relative;
+    width: 98vw !important;
+    max-width: none !important;
+    aspect-ratio: 1 / 1;
+    background: transparent !important;
+}
+
+.wheel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transform: rotate(1.85deg) !important;
+}
+
+#wheel-spinner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 5s cubic-bezier(0.15, 0, 0.1, 1);
+}
+
+.pointer-wrapper {
+    position: absolute;
+    top: 3% !important; /* Смещаем выше к краю колеса */
+    left: 50%;
+    transform: translateX(-50%); /* Чистое центрирование без margin-hacks */
+    z-index: 20;
+    width: 20% !important; /* Увеличенный размер стрелки */
+    min-width: 80px !important;
+    max-width: 100px !important;
+    display: flex;
+    justify-content: center;
+}
+
+.pointer-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.35)); /* Реалистичная тень для визуального объема */
+}
+
+/* Button */
+.footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-top: 5px !important; /* Поднимаем футер выше к колесу */
+    position: relative;
+    z-index: 10;
+}
+
+.spin-button {
+    width: 65% !important; /* Принудительное сужение кнопки */
+    padding: 16px 0;
+    background-color: #4C6788;
+    color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px !important; /* Принудительное увеличение шрифта */
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.spin-button:active {
+    transform: scale(0.98);
+}
+
+.spin-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.privacy-link {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #4C6788;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.privacy-link:active {
+    opacity: 0.7;
+}
+
+/* Modal Overlay */
+#lead-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+#privacy-modal-overlay {
+    overflow-y: scroll !important;
+    -webkit-overflow-scrolling: touch;
+    pointer-events: auto;
+}
+
+.no-scroll {
+    overflow: hidden !important;
+    height: 100vh;
+}
+
+/* Modal Content */
+#lead-modal-content {
+    background: #FFFFFF;
+    width: 100%;
+    max-width: 400px;
+    padding: 40px 30px;
+    border-radius: 20px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: modalAppear 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes modalAppear {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #473529;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #473529;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.modal-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #473529;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-input {
+    width: 100%;
+    padding: 14px 20px;
+    border: 2px solid #473529;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: #4C6788;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.modal-input::placeholder {
+    color: #473529;
+    opacity: 0.7;
+}
+
+.modal-input:focus {
+    border-color: #4C6788;
+}
+
+.modal-submit {
+    width: 100%;
+    padding: 16px;
+    background-color: #4C6788;
+    color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 10px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.modal-submit:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 360px) {
+    .main-title { font-size: 44px; }
+    .subtitle-line-1 { font-size: 20px; }
+    .subtitle-line-2 { font-size: 26px; }
+}

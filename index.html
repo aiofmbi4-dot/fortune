@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Колесо Фортуны</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1 class="main-title">КОЛЕСО<br>ФОРТУНЫ</h1>
+            <div class="subtitle">
+                <p class="subtitle-line-1">получи шанс выиграть</p>
+                <p class="subtitle-line-2"><span style="color: #4C6788;">Бесплатную</span> оправу</p>
+            </div>
+        </header>
+
+        <main class="game-section">
+            <div class="wheel-container">
+                <div class="pointer-wrapper">
+                    <img src="img/pointer.png" alt="Pointer" class="pointer-image">
+                </div>
+                
+                <div id="wheel-spinner" style="position: relative; width: 100%; height: 100%;">
+                    <img src="img/wheel1.png" alt="Wheel of Fortune" id="wheel" class="wheel-image">
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer" style="text-align: center; margin-top: 20px; padding-bottom: 40px; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+            <button class="spin-button" id="spinButton">КРУТИТЬ КОЛЕСО</button>
+        </footer>
+    </div>
+    <div id="lead-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 100; justify-content: center; align-items: center; padding: 20px;">
+        <div id="lead-modal-content" style="background-color: #F1EDE1; border-radius: 20px; padding: 40px 25px; width: 100%; max-width: 400px; position: relative; font-family: 'Montserrat', sans-serif; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+            
+            <span id="close-modal" style="position: absolute; top: 15px; right: 20px; font-size: 28px; color: #a09a90; cursor: pointer; line-height: 1;">&times;</span>
+            
+            <h2 style="color: #4C6788; font-size: 28px; font-weight: 800; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px;">ПОЗДРАВЛЯЕМ!</h2>
+            
+            <p style="color: #473529; font-size: 18px; font-weight: 500; margin-bottom: 12px; line-height: 1.3;">Вы выиграли<br><span style="font-weight: 800; text-transform: uppercase; font-size: 20px;">БЕСПЛАТНУЮ ОПРАВУ</span></p>
+            
+            <p style="color: #8C8279; font-size: 13px; font-weight: 500; margin-bottom: 25px; line-height: 1.4;">Оставьте контакты — мы свяжемся<br>и вручим сертификат</p>
+            
+            <form id="lead-form">
+                <div style="text-align: left; margin-bottom: 15px;">
+                    <label style="display: block; font-size: 11px; font-weight: 700; color: #8C8279; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">Ваше имя</label>
+                    <input type="text" placeholder="Иван Иванов" required style="width: 100%; padding: 14px; border: 1px solid #d3cdc3; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 16px; outline: none; box-sizing: border-box; background-color: #FFFFFF; color: #473529;">
+                </div>
+                
+                <div style="text-align: left; margin-bottom: 25px;">
+                    <label style="display: block; font-size: 11px; font-weight: 700; color: #8C8279; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">Телефон</label>
+                    <input type="tel" id="phone-input" placeholder="+7 (900) 000-00-00" required style="width: 100%; padding: 14px; border: 1px solid #d3cdc3; border-radius: 8px; font-family: 'Montserrat', sans-serif; font-size: 16px; outline: none; box-sizing: border-box; background-color: #FFFFFF; color: #473529;">
+                </div>
+                
+                <div style="text-align: left; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px;">
+                    <input type="checkbox" id="policy1" required style="margin-top: 2px; accent-color: #4C6788; width: 16px; height: 16px; flex-shrink: 0;">
+                    <label for="policy1" style="font-size: 11px; color: #7a736a; line-height: 1.4;">Я даю согласие на обработку моих персональных данных в соответствии с <a href="#" class="open-privacy-link" style="color: #4C6788; text-decoration: underline;">Политикой конфиденциальности</a></label>
+                </div>
+                
+                <div style="text-align: left; margin-bottom: 25px; display: flex; align-items: flex-start; gap: 10px;">
+                    <input type="checkbox" id="policy2" required style="margin-top: 2px; accent-color: #4C6788; width: 16px; height: 16px; flex-shrink: 0;">
+                    <label for="policy2" style="font-size: 11px; color: #7a736a; line-height: 1.4;">Я ознакомлен(а) и согласен(а) с <a href="#" class="open-privacy-link" style="color: #4C6788; text-decoration: underline;">Политикой конфиденциальности</a></label>
+                </div>
+                
+                <button type="submit" id="submit-lead" style="width: 100%; padding: 16px; background-color: #4C6788; color: #FFFFFF; font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 10px rgba(76, 103, 136, 0.3);">ПОЛУЧИТЬ ОПРАВУ</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="success-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 150; justify-content: center; align-items: center; padding: 20px;">
+        <div style="background-color: #F1EDE1; border-radius: 20px; padding: 50px 30px; width: 100%; max-width: 380px; position: relative; font-family: 'Montserrat', sans-serif; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+            
+            <span id="close-success" style="position: absolute; top: 15px; right: 20px; font-size: 28px; color: #a09a90; cursor: pointer; line-height: 1;">&times;</span>
+            
+            <h2 style="color: #4C6788; font-size: 24px; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 0.5px; line-height: 1.2;">Мы получили<br>ваши данные!</h2>
+            
+            <p style="color: #473529; font-size: 16px; font-weight: 500; line-height: 1.5;">В ближайшее время свяжемся с вами для получения сертификата на <span style="font-weight: 800; text-transform: uppercase;">БЕСПЛАТНУЮ ОПРАВУ</span></p>
+            
+        </div>
+    </div>
+
+    <div id="privacy-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #FFFFFF; z-index: 999; overflow-y: scroll !important; -webkit-overflow-scrolling: touch; pointer-events: auto; padding: 20px; font-family: 'Montserrat', sans-serif; opacity: 0; transition: opacity 0.3s ease;">
+        <div style="max-width: 600px; margin: 0 auto; padding-top: 40px; padding-bottom: 80px; position: relative;">
+            <span id="close-privacy" style="position: fixed; top: 15px; right: 20px; font-size: 32px; color: #4C6788; cursor: pointer; z-index: 1000;">&times;</span>
+            
+            <div style="font-size: 13px; line-height: 1.6; color: #473529;">
+                <p style="margin-bottom: 5px; text-align: center;"><strong>МАГАЗИН ОПТИКИ ДЭИЛ 28<br>ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</strong></p>
+                <p style="margin-bottom: 20px; text-align: center; font-size: 11px; color: #8C8279;">Редакция от 1 января 2026 г. | Версия 2.0 (обновлена с учётом поправок к ФЗ-152 2022–2024 гг.)</p>
+                
+                <p style="margin-bottom: 15px;">Настоящая Политика конфиденциальности (далее — «Политика») разраболена в соответствии с требованиями Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» (в редакции, действующей с учётом изменений 2022–2024 гг.) и устанавливает порядок обработки персональных данных пользователей сайта магазина оптики ДЭИЛ 28, принадлежащего Индивидуальному предпринимателю Арзамасцеву Даниилу Сергеевичу (далее — «Оператор»).</p>
+                
+                <h3 style="font-size: 14px; margin-top: 20px; margin-bottom: 10px; font-weight: 700; color: #4C6788;">1. Сведения об операторе</h3>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 11px;">
+                    <tr><td style="padding: 6px; border: 1px solid #d3cdc3;"><strong>Наименование</strong></td><td style="padding: 6px; border: 1px solid #d3cdc3;">Магазин оптики ДЭИЛ 28</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #d3cdc3;"><strong>Организационно-правовая форма</strong></td><td style="padding: 6px; border: 1px solid #d3cdc3;">Индивидуальный предприниматель</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #d3cdc3;"><strong>ФИО</strong></td><td style="padding: 6px; border: 1px solid #d3cdc3;">Арзамасцев Даниил Сергеевич</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #d3cdc3;"><strong>ИНН</strong></td><td style="padding: 6px; border: 1px solid #d3cdc3;">772990458770</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #d3cdc3;"><strong>Адрес</strong></td><td style="padding: 6px; border: 1px solid #d3cdc3;">Московская область, г.о. Ленинский, пгт. Дрожжино, ул. Южная, д. 3, к. 3, кв. 63</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #d3cdc3;"><strong>E-mail</strong></td><td style="padding: 6px; border: 1px solid #d3cdc3;">dalle28zayavk1@mail.ru</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #d3cdc3;"><strong>Уведомление РКН</strong></td><td style="padding: 6px; border: 1px solid #d3cdc3;">Оператор обязан направить уведомление до начала обработки ПДн (ст. 22 ФЗ-152).</td></tr>
+                </table>
+                
+                <h3 style="font-size: 14px; margin-top: 20px; margin-bottom: 10px; font-weight: 700; color: #4C6788;">2. Правовые основания обработки</h3>
+                <p style="margin-bottom: 5px;">Обработка персональных данных осуществляется в соответствии с:</p>
+                <ul style="padding-left: 20px; margin-bottom: 10px; font-size: 12px;">
+                    <li>Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных» (ред. 2024 г.);</li>
+                    <li>Постановлением Правительства РФ от 01.11.2012 № 1119;</li>
+                    <li>Приказом ФСТЭК России от 18.02.2013 № 21;</li>
+                    <li>Согласием субъекта персональных данных.</li>
+                </ul>
+                <p style="margin-bottom: 15px;">Правовое основание обработки по ст. 6 ФЗ-152: согласие субъекта. Обработка без согласия не осуществляется.</p>
+                
+                <h3 style="font-size: 14px; margin-top: 20px; margin-bottom: 10px; font-weight: 700; color: #4C6788;">3. Цели обработки персональных данных</h3>
+                <ul style="padding-left: 20px; margin-bottom: 10px; font-size: 12px;">
+                    <li>предоставление промокодов и призов в рамках акции «Колесо фортуны»;</li>
+                    <li>связь с победителями акции для уточнения условий получения приза;</li>
+                    <li>выполнение требований законодательства РФ.</li>
+                </ul>
+                
+                <h3 style="font-size: 14px; margin-top: 20px; margin-bottom: 10px; font-weight: 700; color: #4C6788;">4. Состав и категории персональных данных</h3>
+                <p style="margin-bottom: 5px;">Оператор обрабатывает следующие категории данных (общедоступные):</p>
+                <ul style="padding-left: 20px; margin-bottom: 10px; font-size: 12px;">
+                    <li>имя (фамилия, имя — по желанию субъекта);</li>
+                    <li>номер контактного телефона.</li>
+                </ul>
+                <p style="margin-bottom: 15px;">Специальные категории персональных данных Оператором не обрабатываются.</p>
+                
+                <h3 style="font-size: 14px; margin-top: 20px; margin-bottom: 10px; font-weight: 700; color: #4C6788;">5. Порядок и условия обработки</h3>
+                <p style="margin-bottom: 5px;"><strong>5.1. Способы обработки:</strong> автоматизированным способом через форму на сайте, без передачи третьим лицам.</p>
+                <p style="margin-bottom: 5px;"><strong>5.2. Согласие:</strong> осуществляется исключительно с согласия субъекта, выраженного путём проставления отметки в форме.</p>
+                <p style="margin-bottom: 5px;"><strong>5.3. Срок хранения:</strong> не более 3 (трёх) лет либо до отзыва согласия. Уничтожение — в течение 30 дней.</p>
+                <p style="margin-bottom: 15px;"><strong>5.4. Трансграничная передача:</strong> не осуществляется. Серверы расположены в РФ.</p>
+                
+                <h3 style="font-size: 14px; margin-top: 20px; margin-bottom: 10px; font-weight: 700; color: #4C6788;">6. Права субъекта персональных данных</h3>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 10px;">
+                    <tr style="background-color: #f5f3ec;"><th style="padding: 5px; border: 1px solid #d3cdc3; text-align: left;">Право субъекта</th><th style="padding: 5px; border: 1px solid #d3cdc3; text-align: left;">Срок</th></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #d3cdc3;">Получить сведения об обработке</td><td style="padding: 5px; border: 1px solid #d3cdc3;">30 дней</td></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #d3cdc3;">Уточнить данные</td><td style="padding: 5px; border: 1px solid #d3cdc3;">7 раб. дней</td></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #d3cdc3;">Блокировать/уничтожить</td><td style="padding: 5px; border: 1px solid #d3cdc3;">30 дней</td></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #d3cdc3;">Отозвать согласие</td><td style="padding: 5px; border: 1px solid #d3cdc3;">Незамедлительно</td></tr>
+                    <tr><td style="padding: 5px; border: 1px solid #d3cdc3;">Жалоба в Роскомнадзор</td><td style="padding: 5px; border: 1px solid #d3cdc3;">По регламенту</td></tr>
+                </table>
+                <p style="margin-bottom: 15px;">Для реализации прав обращайтесь: dalle28zayavk1@mail.ru</p>
+                
+                <h3 style="font-size: 14px; margin-top: 20px; margin-bottom: 10px; font-weight: 700; color: #4C6788;">7. Меры по защите данных</h3>
+                <p style="margin-bottom: 15px;">ИС персональных данных относится к 4-му уровню защищённости (УЗ-4). Применяется шифрование HTTPS/TLS, ограничение доступа и регулярная проверка условий.</p>
+                
+                <h3 style="font-size: 14px; margin-top: 20px; margin-bottom: 10px; font-weight: 700; color: #4C6788;">8. Cookies и localStorage</h3>
+                <p style="margin-bottom: 15px;">Сайт использует localStorage исключительно для ограничения количества попыток (1 раз на устройство). ПДн в localStorage не сохраняются. При использовании метрик данные регулируются их политиками.</p>
+                
+                <h3 style="font-size: 14px; margin-top: 20px; margin-bottom: 10px; font-weight: 700; color: #4C6788;">9. Изменения Политики</h3>
+                <p style="margin-bottom: 15px;">Оператор вправе вносить изменения в Политику. Существенные изменения публикуются за 7 дней до вступления в силу.</p>
+                
+                <h3 style="font-size: 14px; margin-top: 20px; margin-bottom: 10px; font-weight: 700; color: #4C6788;">10. Контакты</h3>
+                <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px; font-size: 11px;">
+                    <tr><td style="padding: 6px; border: 1px solid #d3cdc3;"><strong>Оператор</strong></td><td style="padding: 6px; border: 1px solid #d3cdc3;">ИП Арзамасцев Д.С. (dalle28zayavk1@mail.ru)</td></tr>
+                    <tr><td style="padding: 6px; border: 1px solid #d3cdc3;"><strong>Роскомнадзор</strong></td><td style="padding: 6px; border: 1px solid #d3cdc3;">rkn.gov.ru | 8-800-222-15-35</td></tr>
+                </table>
+                
+                <p style="font-size: 11px; text-align: center; color: #8C8279; border-top: 1px solid #d3cdc3; padding-top: 15px; line-height: 1.4;">
+                    Магазин оптики ДЭИЛ 28 · ИП Арзамасцев Даниил Сергеевич · ИНН: 772990458770<br>
+                    © 2026 Все права защищены · Редакция 2.0 от 1 января 2026 г.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://unpkg.com/imask"></script>
+    <script src="script.js"></script>
+</body>
+</html>
