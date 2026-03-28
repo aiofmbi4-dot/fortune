@@ -88,7 +88,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 15px !important; /* Резкое сокращение отступа над колесом */
+    margin-top: 10px !important; /* Дополнительное уменьшение отступа над колесом */
     margin-bottom: 0;
 }
 
@@ -142,7 +142,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding-bottom: 20px;
-    margin-top: 5px !important; /* Поднимаем футер выше к колесу */
+    margin-top: 10px !important; /* Корректировка отступа кнопки для компактности */
     position: relative;
     z-index: 10;
 }
